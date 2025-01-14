@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="TikRefu-logo-512x512.ico">
+  <link rel="icon" type="image/png" href="TikRefu-logo-512x512.ico">
+  <link rel="apple-touch-icon" href="TikRefu-logo-512x512.ico">
   <title>TikRefu - TikTok Refugee Camp</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
@@ -74,26 +77,31 @@
     document.addEventListener('DOMContentLoaded', () => {
       const socialLinks = document.querySelector('.social-links');
       let isDragging = false;
-      let startX, startLeft;
+      let startX, startY, startLeft, startTop;
 
       socialLinks.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.clientX;
+        startY = e.clientY;
         startLeft = parseInt(window.getComputedStyle(socialLinks).left, 10);
+        startTop = parseInt(window.getComputedStyle(socialLinks).top, 10);
         socialLinks.style.transition = 'none';
       });
 
       document.addEventListener('mousemove', (e) => {
         if (isDragging) {
           const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
           const newLeft = startLeft + deltaX;
+          const newTop = startTop + deltaY;
           socialLinks.style.left = `${newLeft}px`;
+          socialLinks.style.top = `${newTop}px`;
         }
       });
 
       document.addEventListener('mouseup', () => {
         isDragging = false;
-        socialLinks.style.transition = 'left 0.2s ease';
+        socialLinks.style.transition = 'left 0.2s ease, top 0.2s ease';
       });
     });
   </script>
