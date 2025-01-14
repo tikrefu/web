@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikRefu - TikTok Refugee Camp</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -15,6 +16,26 @@
     }
     header {
       margin-bottom: 30px;
+      position: relative;
+    }
+    .social-links {
+      position: relative;
+      display: flex;
+      gap: 15px;
+      cursor: grab;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .social-links:active {
+      cursor: grabbing;
+    }
+    .social-links a {
+      color: #fff;
+      font-size: 24px;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #ff00ff;
     }
     .logo {
       width: 200px;
@@ -26,6 +47,7 @@
       border-radius: 10px;
       margin: 20px auto;
       max-width: 800px;
+      position: relative;
     }
     .meme-text {
       font-size: 24px;
@@ -48,6 +70,33 @@
       color: #666;
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const socialLinks = document.querySelector('.social-links');
+      let isDragging = false;
+      let startX, startLeft;
+
+      socialLinks.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startLeft = parseInt(window.getComputedStyle(socialLinks).left, 10);
+        socialLinks.style.transition = 'none';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const deltaX = e.clientX - startX;
+          const newLeft = startLeft + deltaX;
+          socialLinks.style.left = `${newLeft}px`;
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        socialLinks.style.transition = 'left 0.2s ease';
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -56,11 +105,23 @@
     <h2>Your Safe Haven from the TikTok Ban</h2>
   </header>
 
+  <div class="social-links">
+    <a href="https://www.youtube.com/@tikrefu" target="_blank">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://github.com/tikrefu" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://x.com/tikrefu" target="_blank">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+
   <div class="meme-container">
     <div class="meme-text">
       When the US Government says <span>"Sell or Else"</span> but you're just trying to do the Renegade...
     </div>
-    <img src="https://i.imgflip.com/8k0x0o.jpg" alt="Distracted Boyfriend Meme" class="meme-img">
+    <img src="Distracted Boyfriend Meme.jpg" alt="Distracted Boyfriend Meme" class="meme-img">
   </div>
 
   <div class="meme-container">
@@ -68,7 +129,7 @@
       TikTok: <span>"I just want to dance!"</span><br>
       US Government: <span>"That's exactly what a spy would say!"</span>
     </div>
-    <img src="https://i.imgflip.com/8k0x0p.jpg" alt="Drakeposting Meme" class="meme-img">
+    <img src="Drakeposting Meme.jpg" alt="Drakeposting Meme" class="meme-img">
   </div>
 
   <div class="meme-container">
@@ -79,7 +140,7 @@
   </div>
 
   <div class="footer">
-    <p>Disclaimer: This is satire. We love TikTok (and the First Amendment).</p>
+    <p>Disclaimer: This is satire. We love TikTok $ ReNote (and the First Amendment).</p>
     <p>#TikRefu #TikTokRefugee #FirstAmendmentMemes</p>
   </div>
 </body>
